@@ -21,7 +21,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             RapidrecallTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    RapidrecallApp(
+                    RapidRecallApp(
                         controller = controller,
                         modifier = Modifier.padding(innerPadding)
                     )
