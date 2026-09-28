@@ -1,0 +1,66 @@
+classDiagram
+direction TB
+
+class MainActivity {
+  -controller: GameController
+  #onCreate(savedInstanceState: Bundle?) Unit
+}
+
+class GameController {
+  -repository: AttemptRepository
+  -currentRound: GameRound?
+  -lastAttempt: Attempt?
+  -currentScreen: String
+  +getCurrentScreen() String
+  +navigateTo(screen: String) Unit
+  +startGame(length: Int) Unit
+  +submitAnswer(input: String) Unit
+  +getCurrentRound() GameRound?
+  +getLastAttempt() Attempt?
+  +getAttempts() List~Attempt~
+  +getSummary() GameSummary
+}
+
+class GameRound {
+  +sequenceLength: Int
+  +targetSequence: String
+  -generateSequence(length: Int) String
+  +check(input: String) Attempt
+}
+
+class AttemptRepository {
+  -attempts: MutableList~Attempt~
+  +addAttempt(attempt: Attempt) Unit
+  +getAttempts() List~Attempt~
+  +getSummary() GameSummary
+}
+
+class Attempt {
+  <<data class>>
+  +sequenceLength: Int
+  +userInput: String
+  +targetSequence: String
+  +isCorrect: Boolean
+  +timestamp: Long
+}
+
+class GameSummary {
+  <<data class>>
+  +totalAttempts: Int
+  +correctAttempts: Int
+  +accuracy: Double
+}
+
+MainActivity --> "1" GameController : owns
+GameController *-- "1" AttemptRepository : stores attempts in
+GameController --> "0..1" GameRound : current round
+AttemptRepository "1" *-- "0..*" Attempt : contains
+AttemptRepository ..> GameSummary : creates
+GameRound ..> Attempt : creates
+
+note for MainActivity "App entry point. Creates the GameController and hosts the Compose UI, forwarding user actions to the controller."
+note for GameController "Coordinates the app: tracks the current screen as a String (home, select, game, result, log, summary), starts rounds, checks answers and saves attempts."
+note for GameRound "One game round. Generates a random digit sequence of the chosen length and checks the player's input against it. No Android dependencies."
+note for AttemptRepository "Keeps all attempts for the current session. Exposes a read-only list and computes summary statistics."
+note for Attempt "Immutable record of one completed attempt."
+note for GameSummary "Statistics: total attempts, correct attempts and accuracy percentage."
