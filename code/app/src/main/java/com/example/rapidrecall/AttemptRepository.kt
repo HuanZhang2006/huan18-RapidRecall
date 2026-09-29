@@ -8,11 +8,11 @@ import androidx.compose.runtime.mutableStateListOf
  * Purpose: Stores every completed Attempt for the current app session and
  * computes summary statistics from them.
  *
- * Design rationale: The list is private so only this class can modify it
- * (information hiding); other classes get a read-only List.
+ * Design rationale: The list is private so only this class can modify it;
+ * other classes get a read-only List.
  *
  * Outstanding issues: Data is kept in memory only and is lost when the app
- * process ends. Uses Compose state so the UI refreshes automatically.
+ * process ends.
  */
 class AttemptRepository {
     private val _attempts = mutableStateListOf<Attempt>()

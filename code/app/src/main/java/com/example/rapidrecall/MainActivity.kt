@@ -12,7 +12,23 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.rapidrecall.ui.theme.RapidrecallTheme
-
+/**
+ * MainActivity
+ *
+ * Purpose: Entry point of the app. Creates the single GameController for the
+ * session and hosts the Compose UI. RapidRecallApp (below) shows the screen
+ * that matches the controller's current screen name.
+ *
+ * Design rationale: This is the only place that connects the UI to the
+ * controller. Each screen receives plain data and lambda callbacks, so the
+ * screens never access GameController directly (separation of concerns).
+ *
+ * Outstanding issues:
+ * - The system back button closes the app instead of returning to the home
+ *   screen.
+ * - The controller is created by the Activity, so all session data is lost on
+ *   configuration changes such as screen rotation.
+ */
 class MainActivity : ComponentActivity() {
     private val controller = GameController()
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -16,7 +16,6 @@ import androidx.compose.runtime.mutableStateOf
  * Screen names: "home", "select", "game", "result", "log", "summary".
  *
  * Outstanding issues: State is lost on configuration changes (e.g. rotation)
- * because the controller is not stored in a ViewModel.
  */
 class GameController {
     private val repository = AttemptRepository()
