@@ -1,5 +1,7 @@
 package com.example.rapidrecall
 
+import androidx.compose.animation.AnimatedContent
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -8,8 +10,12 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Button
+import androidx.compose.material3.LinearProgressIndicator
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -20,6 +26,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
@@ -65,16 +72,32 @@ fun GameScreen(
     ) {
         if (isShowing) {
             Text(
-                text = if (shownIndex == 0) "Get ready..."
-                else "Digit $shownIndex of ${targetSequence.length}",
-                fontSize = 18.sp
+                text = if (shownIndex == 0) "Get ready..." else "Digit $shownIndex of ${targetSequence.length}",
+                fontSize = 18.sp,
+                color = MaterialTheme.colorScheme.onSurfaceVariant
             )
+            Spacer(modifier = Modifier.height(24.dp))
             Box(
-                modifier = Modifier.height(160.dp),
+                modifier = Modifier
+                    .size(180.dp)
+                    .clip(CircleShape)
+                    .background(MaterialTheme.colorScheme.primaryContainer),
                 contentAlignment = Alignment.Center
             ) {
-                Text(shownDigit, fontSize = 120.sp, fontWeight = FontWeight.Bold)
+                AnimatedContent(targetState = shownDigit, label = "digit") { digit ->
+                    Text(
+                        text = digit,
+                        fontSize = 96.sp,
+                        fontWeight = FontWeight.Bold,
+                        color = MaterialTheme.colorScheme.onPrimaryContainer
+                    )
+                }
             }
+            Spacer(modifier = Modifier.height(32.dp))
+            LinearProgressIndicator(
+                progress = { shownIndex / targetSequence.length.toFloat() },
+                modifier = Modifier.fillMaxWidth()
+            )
         } else {
             Text("Enter the ${targetSequence.length}-digit sequence", fontSize = 20.sp)
             Spacer(modifier = Modifier.height(24.dp))
