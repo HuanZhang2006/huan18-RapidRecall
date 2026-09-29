@@ -10,7 +10,7 @@ android {
     }
 
     defaultConfig {
-        applicationId = "com.example.rapidrecall"
+        applicationId = "com.huan18.rapidrecall"
         minSdk = 24
         targetSdk = 37
         versionCode = 1

@@ -22,6 +22,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "rapidrecall"
+rootProject.name = "huan18-rapidrecall"
 include(":app")
  
