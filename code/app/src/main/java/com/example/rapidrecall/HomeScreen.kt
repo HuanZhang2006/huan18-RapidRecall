@@ -18,7 +18,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
 /**
- * com.example.rapidrecall.HomeScreen – start screen with navigation to Start, Log and Summary.
+ * HomeScreen – start screen with navigation to Start, Log and Summary.
  */
 @Composable
 fun HomeScreen(
