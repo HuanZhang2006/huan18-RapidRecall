@@ -53,12 +53,12 @@ fun LengthSelectScreen(
         Spacer(modifier = Modifier.height(24.dp))
         Button(
             onClick = { onStartGame(length.roundToInt()) },
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier.fillMaxWidth().height(52.dp)
         ) {
             Text("Start Game", fontSize = 18.sp)
         }
         Spacer(modifier = Modifier.height(12.dp))
-        OutlinedButton(onClick = onBack, modifier = Modifier.fillMaxWidth()) {
+        OutlinedButton(onClick = onBack, modifier = Modifier.fillMaxWidth().height(52.dp)) {
             Text("Back")
         }
     }

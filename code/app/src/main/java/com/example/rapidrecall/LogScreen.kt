@@ -52,7 +52,7 @@ fun LogScreen(
             }
         }
 
-        Button(onClick = onBack, modifier = Modifier.fillMaxWidth()) {
+        Button(onClick = onBack, modifier = Modifier.fillMaxWidth().height(52.dp)) {
             Text("Back")
         }
     }

@@ -56,11 +56,11 @@ fun ResultScreen(
         )
 
         Spacer(modifier = Modifier.height(40.dp))
-        Button(onClick = onPlayAgain, modifier = Modifier.fillMaxWidth()) {
+        Button(onClick = onPlayAgain, modifier = Modifier.fillMaxWidth().height(52.dp)) {
             Text("Play Again (${attempt.sequenceLength} digits)")
         }
         Spacer(modifier = Modifier.height(12.dp))
-        OutlinedButton(onClick = onHome, modifier = Modifier.fillMaxWidth()) {
+        OutlinedButton(onClick = onHome, modifier = Modifier.fillMaxWidth().height(52.dp)) {
             Text("Home")
         }
     }

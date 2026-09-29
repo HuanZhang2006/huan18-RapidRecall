@@ -40,7 +40,7 @@ fun SummaryScreen(
         SummaryItem("Accuracy", "%.1f%%".format(summary.accuracy))
 
         Spacer(modifier = Modifier.height(40.dp))
-        Button(onClick = onBack, modifier = Modifier.fillMaxWidth()) {
+        Button(onClick = onBack, modifier = Modifier.fillMaxWidth().height(52.dp)) {
             Text("Back")
         }
     }

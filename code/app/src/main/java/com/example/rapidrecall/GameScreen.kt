@@ -119,7 +119,7 @@ fun GameScreen(
             Button(
                 onClick = { onSubmit(input) },
                 enabled = input.isNotEmpty(),
-                modifier = Modifier.fillMaxWidth()
+                modifier = Modifier.fillMaxWidth().height(52.dp)
             ) {
                 Text("Submit", fontSize = 18.sp)
             }
